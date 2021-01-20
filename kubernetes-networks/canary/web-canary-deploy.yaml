@@ -1,9 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web 
+  name: web-canary
+  namespace: canary
 spec:
-  replicas: 3
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -20,7 +21,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: zoolgle/web:2.0
+        image: zoolgle/web:1.0
         readinessProbe:
           httpGet:
             path: /index.html
